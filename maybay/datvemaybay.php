@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $departure = $_POST['departure'];
@@ -25,6 +26,15 @@
                 echo "<div class='alert alert-success mt-3'>Form đã được gửi thành công!</div>";
             }
             ?>
+<header>
+    <h1>Chào Mừng Đến Với Tour Du Lịch</h1>
+    <nav>
+        <a href="">Tour</a>
+        <a href="">Vé máy bay</a>
+        <a href="">Khách sạn</a>
+        <a href="">Thuê xe</a>
+    </nav>
+</header>
 <body>
    <div class="container">
    <div class="image-container">
@@ -277,4 +287,10 @@
         }
     </script>
 </body>
+<footer>
+    <p>Địa chỉ: 123 Đường Du Lịch, Thành Phố Hồ Chí Minh</p>
+    <p>Điện thoại: 0123 456 789</p>
+    <p>Email: info@tourdulich.com</p>
+</footer>
+
 </html>
