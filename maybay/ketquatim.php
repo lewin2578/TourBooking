@@ -1,67 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kết Quả Tìm Kiếm Chuyến Bay</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Roboto', sans-serif;
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require_once 'database_connect.php'; // Kết nối đến database
+
+    $departure_airport_id = $_POST['departure_airport_id'];
+    $arrival_airport_id = $_POST['arrival_airport_id'];
+    $departureDate = $_POST['departureDate'];
+    $returnDate = isset($_POST['returnDate']) ? $_POST['returnDate'] : '';
+    $tripType = $_POST['tripType'];
+
+    // Truy vấn thông tin sân bay
+    $airport = $conn->query("SELECT * FROM airport_list");
+    while ($row = $airport->fetch_assoc()) {
+        $aname[$row['id']] = ucwords($row['airport'] . ', ' . $row['location']);
+    }
+
+    // Truy vấn vé một chiều
+    if ($tripType == 'oneWay' && !empty($departureDate)) {
+    $where = " WHERE DATE(f.departure_datetime) = '".date('Y-m-d', strtotime($departureDate))."'";
+    $where .= " AND f.departure_airport_id = '$departure_airport_id' AND f.arrival_airport_id = '$arrival_airport_id'";
+    $flight = $conn->query("SELECT f.* 
+                            FROM flight_list f 
+                            $where 
+                            ORDER BY rand()");
+
+    if ($flight->num_rows > 0) {
+        echo "<div class='container mt-5'>
+                <h3>Vé Một Chiều</h3>
+                <table class='table table-bordered'>
+                    <thead>
+                        <tr>
+                            <th>Ngày đi</th>
+                            <th>Thời gian đi</th>
+                            <th>Điểm đi</th>
+                            <th>Điểm đến</th>
+                            <th>Giá</th>
+                            <th>Số ghế trống</th>
+                            <th>Đặt vé</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+        while ($row = $flight->fetch_assoc()) {
+
+            echo "<tr>
+                    <td>" . date('d-m-Y', strtotime($row['departure_datetime'])) . "</td>
+                    <td>" . date('h:i A', strtotime($row['departure_datetime'])) . "</td>
+                    <td>" . $aname[$row['departure_airport_id']] . "</td>
+                    <td>" . $aname[$row['arrival_airport_id']] . "</td>
+                    <td>" . number_format($row['price'], 2) . " VND</td>
+                    <td><button class='btn btn-primary'>Đặt vé</button></td>
+                  </tr>";
         }
-        .results-container {
-            margin-top: 50px;
+
+        echo "</tbody>
+            </table>
+        </div>";
+    } else {
+        echo "<div class='container mt-5'>
+                <h3>Vé Một Chiều</h3>
+                <div class='row align-items-center'>
+                    <h5 class='text-center'><b>No result.</b></h5>
+                </div>
+              </div>";
+    }
+}
+
+    // Nếu người dùng chọn khứ hồi, truy vấn thêm vé khứ hồi
+    if ($tripType == 'roundTrip' && !empty($returnDate)) {
+        $where = " WHERE DATE(f.departure_datetime) = '".date('Y-m-d', strtotime($returnDate))."'";
+        $where .= " AND f.departure_airport_id = '$arrival_airport_id' AND f.arrival_airport_id = '$departure_airport_id'";
+        $flight = $conn->query("SELECT f.* 
+                                FROM flight_list f 
+                                $where 
+                                ORDER BY rand()");
+
+        if ($flight->num_rows > 0) {
+            echo "<div class='container mt-5'>
+                    <h3>Vé Khứ Hồi</h3>
+                    <table class='table table-bordered'>
+                        <thead>
+                            <tr>
+                                <th>Ngày đi</th>
+                                <th>Thời gian đi</th>
+                                <th>Điểm đi</th>
+                                <th>Điểm đến</th>
+                                <th>Giá</th>
+                                <th>Số ghế trống</th>
+                                <th>Đặt vé</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+
+            while ($row = $flight->fetch_assoc()) {
+                echo "<tr>
+                        <td>" . date('d-m-Y', strtotime($row['departure_datetime'])) . "</td>
+                        <td>" . date('h:i A', strtotime($row['departure_datetime'])) . "</td>
+                        <td>" . $aname[$row['departure_airport_id']] . "</td>
+                        <td>" . $aname[$row['arrival_airport_id']] . "</td>
+                        <td>" . number_format($row['price'], 2) . " VND</td>
+                        <td><button class='btn btn-primary'>Đặt vé</button></td>
+                      </tr>";
+            }
+
+            echo "</tbody>
+                </table>
+            </div>";
+        } else {
+            echo "<div class='container mt-5'>
+                    <h3>Vé Khứ Hồi</h3>
+                    <div class='row align-items-center'>
+                        <h5 class='text-center'><b>No result.</b></h5>
+                    </div>
+                  </div>";
         }
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .flight-card {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        .flight-card h3 {
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .flight-card .details {
-            margin-bottom: 15px;
-        }
-        .flight-card .price {
-            font-size: 18px;
-            font-weight: bold;
-            color: #007bff;
-        }
-    </style>
-</head>
-<body>
-    <div class="container results-container">
-        <div class="title">Kết Quả Tìm Kiếm Chuyến Bay</div>
-        <div class="flight-card">
-            <h3><?php echo $departure; ?> → <?php echo $destination; ?></h3>
-            <div class="details">
-                <p><strong>Ngày đi:</strong> <?php echo $departureDate; ?></p>
-                <?php if ($tripType == 'roundTrip') { ?>
-                    <p><strong>Ngày về:</strong> <?php echo $returnDate; ?></p>
-                <?php } ?>
-                <p><strong>Loại chuyến đi:</strong> <?php echo $tripType == 'roundTrip' ? 'Khứ hồi' : 'Một chiều'; ?></p>
-                <p><strong>Người lớn:</strong> <?php echo $adults; ?></p>
-                <p><strong>Trẻ em:</strong> <?php echo $children; ?></p>
-                <p><strong>Em bé:</strong> <?php echo $infants; ?></p>
-            </div>
-            <div class="price">Giá vé: 2,000,000 VND</div> <!-- Giá vé có thể thay đổi tùy thuộc vào dữ liệu thực tế -->
-        </div>
-    </div>
-    
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    }
+    mysqli_close($conn);
+}
+?>
