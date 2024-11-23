@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Paytone+One" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="GDC-HomeCSSnew.css">
 </head>
 <?php
 // Kết nối cơ sở dữ liệu
@@ -16,7 +17,46 @@ require_once 'database_connect.php'; // Kết nối đến database
 
 ?>
 
-<body>
+
+<body>  
+      <!--NavBar-->
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="#" class="navbar-brand"><img src="4b5d99c4-2f06-45be-88b2-5e4bb39f9885.png" id="logo"> GDC AIRWAYS</a>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        		<span class="sr-only">Toggle navigation</span>
+	        		<span class="icon-bar"></span>
+	        		<span class="icon-bar"></span>
+	        		<span class="icon-bar"></span>
+	      </button>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#"><strong>Home</strong></a></li>
+					<li><a href="GDC-About.php"><strong>About</strong></a></li>
+					<li><a href="GDC-Contacts.php"><strong>Contacts</strong></a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#" data-toggle="modal" data-target="#signup"><strong>Sign up </strong><i class="fas fa-user-plus"></i></a></li>
+					<li><a href="#" data-toggle="modal" data-target="#login"><strong>Login </strong><i class="fas fa-user"></i></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+  <!--NavBar End-->
+
+  <!--Heading/Moto-->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div id="content">
+					<h1>Your  Experience  Starts  Here!</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+  <!--Heading/Moto End-->
     <div class="container">
         <div class="booking-form mx-auto">
             <h2>Đặt Chuyến Bay</h2>
@@ -91,7 +131,11 @@ require_once 'database_connect.php'; // Kết nối đến database
             </form>           
         </div>
 
-        <?php include 'ketquatim.php'; ?>
+        <?php  
+    
+        include 'ketquatim.php'; 
+        
+        ?>
     </div>
 
     <!-- Bootstrap JS and dependencies -->
