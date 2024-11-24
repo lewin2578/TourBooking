@@ -10,79 +10,77 @@ echo '
     <style>
 body {
     font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 
-        }
-        header {
+}
+
+header {
     background-color: #4CAF50;
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
-            color:white;
-        }
-        .navbar-nav {
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.navbar-nav {
     margin: auto;
 }
-        .nav-link {
+.nav-link {
     color: #ffffff !important;
 }
-        nav a {
+nav a {
     margin: 0 15px;
-            color: white;
-            text-decoration: none;
-        }
-        .tour-list {
+    color: white;
+    text-decoration: none;
+}
+.tour-list {
     flex: 1;
     display: flex;
     flex-direction: column; /* Sắp xếp theo cột */
-            align-items: center; /* Canh giữa các mục */
-            padding: 20px;
-        }
-        .tour-item {
+    align-items: center; /* Canh giữa các mục */
+    padding: 20px;
+}
+.tour-item {
     border: 1px solid #ccc;
-            border-radius: 5px;
-            margin: 10px;
-            padding: 15px;
-            width: 80%; /* Chiếm 80% chiều rộng */
-            text-align: center;
-        }
-        footer {
+    border-radius: 5px;
+    margin: 10px;
+    padding: 15px;
+    width: 80%; /* Chiếm 80% chiều rộng */
+    text-align: center;
+}
+footer {
     background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-        }
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
 
-
-
-
-        .tour-list .card {
+.tour-list .card {
     border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-        }
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
 
-        .tour-list .card:hover {
+.tour-list .card:hover {
     transform: translateY(-5px);
-        }
+}
 
-        .tour-list .card-title {
+.tour-list .card-title {
     font-size: 1.2em;
-            font-weight: bold;
-        }
+    font-weight: bold;
+}
 
-        .tour-list .card-text {
+.tour-list .card-text {
     font-size: 0.9em;
-        }
+}
 
-        .tour-list .btn {
+.tour-list .btn {
     background-color: #007bff;
-            border-color: #007bff;
-        }
+    border-color: #007bff;
+}
     </style>
 </head>
 <body>
@@ -98,8 +96,8 @@ body {
     Tour
                         </p>
                         <ul class="dropdown-menu" aria-labelledby="tourDropdown">
-                            <li><a class="dropdown-item" href="tour/tour_trongnuoc.php">Trong nước</a></li>
-                            <li><a class="dropdown-item" href="tour/tour_ngoainuoc.php">Ngoài nước</a></li>
+                            <li><a class="dropdown-item" href="../tour/tour_trongnuoc.php">Trong nước</a></li>
+                            <li><a class="dropdown-item" href="../tour/tour_ngoainuoc.php">Ngoài nước</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -110,6 +108,9 @@ body {
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Thuê xe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../login/login.php">Đăng nhập</a>
                     </li>
                 </ul>
             </div>
