@@ -117,61 +117,15 @@ require_once 'database_connect.php'; // Kết nối đến database
                         </div>
                     </div>
                 </div>
-                <div class="form-row mb-3">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="tripType" id="oneWay" value="oneWay" onclick="toggleReturnDate()" required>
-                        <label class="form-check-label" for="oneWay">Một chiều</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="tripType" id="roundTrip" value="roundTrip" onclick="toggleReturnDate()">
-                        <label class="form-check-label" for="roundTrip">Khứ hồi</label>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Tìm chuyến bay</button>
+                <button type="submit" class="btn btn-primary btn-block">Tìm chuyến bay</button> 
             </form>           
         </div>
 
         <?php  
     
-        include 'ketquatim.php'; 
+        include 'result.php'; 
         
         ?>
     </div>
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function toggleReturnDate() {
-            var returnDateDiv = document.getElementById("returnDateDiv");
-            if (document.getElementById("roundTrip").checked) {
-                returnDateDiv.style.display = "block";
-            } else {
-                returnDateDiv.style.display = "none";
-            }
-        }
-    </script>
-    <script>
-        function updateDestinations() {
-            var departure = document.getElementById("departure").value;
-            var destination = document.getElementById("destination");
-            var options = destination.options;
-
-            // Reset the destination options to visible
-            for (var i = 0; i < options.length; i++) {
-                options[i].style.display = "block";
-            }
-
-            // Hide the selected departure airport in destination options
-            if (departure !== "") {
-                for (var i = 0; i < options.length; i++) {
-                    if (options[i].value === departure) {
-                        options[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
 </body>
 </html>
