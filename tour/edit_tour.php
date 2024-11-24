@@ -125,9 +125,7 @@ if (isset($_POST['submit'])) {
 <header>
     <h1>Chỉnh Sửa Thông Tin Tour</h1>
 </header>
-<div id="menu">
-    <a href="quanly_tour.php">Quay lại</a>
-</div>
+
 <form method="post" action="">
     <table>
         <tr>
