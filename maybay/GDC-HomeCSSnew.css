@@ -1,0 +1,214 @@
+body{
+	background: url(s9nIMMH-airplane-wall-paper.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+#logo{
+	width: 40px;
+	height:40px;
+	display: inline;
+	margin-bottom: 10px;
+	vertical-align: top;
+}
+
+.navbar-brand{
+	font-family: Paytone One;
+
+}
+
+a{
+    color:white;
+}
+
+.tabshead{
+	font-weight: bold;
+	font-size: 1.5em;
+	color: white;
+}
+
+.tab-content {
+	color: white;
+}
+
+#second{
+	margin-top: 11%;
+    border: 1px solid;
+    box-shadow: 5px 5px 5px 3px #131313;
+    background-color: rgba(90,0,0,0.3);
+}
+
+.drop{
+	color: black;
+	width: 30%;
+	height: 40px;
+	font-size: 1.3em;
+	margin-bottom: 20px;
+	margin-right: 1.2%;
+	margin-left: 1.2%;
+}
+
+.drop2{
+	color: black;
+	width: 45%;
+	height: 40px;
+	font-size: 1.3em;
+	margin-bottom: 20px;
+	margin-left: 3.3%;
+}
+
+.drp{
+	margin-left: 44%;
+}
+
+.drop21{
+	color: black;
+	width: 40.5%;
+	height: 40px;
+	font-size: 1.3em;
+	margin-bottom: 20px;
+	margin-right: 3.3%;
+}
+
+.lab{
+	padding-left: 10px;
+	font-size: 1.5em;
+}
+
+.lab2{
+	padding-left: 3.3%;
+	font-size: 1.5em;
+}
+
+.container{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.btn-group-lg>.btn, .btn-lg {
+	padding: 8px 40px;
+}
+
+#content{
+	text-align: center;
+	padding-top: 10%;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+}
+
+h1{
+	font-size: 4em;
+	font-family: Pacifico;
+	word-spacing: 15px;
+	color: white;
+}
+
+#usernameSignUp{
+	margin-left: 9.9%;
+}
+
+#email{
+	margin-left: 12.1%;
+}
+
+#passSignUp{
+	margin-left: 10.1%;
+}
+
+#messagecheck1, #messagecheck2{
+	color: red;
+}
+
+.messageCheck{
+	color: red;
+}
+
+#flightsButton{
+	background-color: rgba(150,0,0,0.7);
+	padding: 9.8px;
+	border: none;
+    width: 170px;
+}
+
+#tickButton{
+	background-color: rgba(150,0,0,0.7);
+	padding: 9.8px;
+	border: none;
+    width: 170px;
+    margin-bottom: 5px;
+    margin-left: 42.5%;
+}
+
+#fsButton{
+	background-color: rgba(150,0,0,0.7);
+	padding: 9.8px;
+	border: none;
+    width: 170px;
+}
+ 
+
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.booking-form {
+    background: rgba(43, 12, 12, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #ffffff;
+}
+
+label, .form-check-label {
+    color: #ffffff;
+}
+
+.form-control, .custom-select {
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.input-group-text {
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+    border: 1px solid #ced4da;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #000;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    color: #000;
+}
+
+
