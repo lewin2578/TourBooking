@@ -1,7 +1,7 @@
 <?php
 require "../connect.php";
 
-$query = "SELECT * FROM `tour` WHERE `type` = 'Trong Nước'";
+$query = "SELECT * FROM `tour` WHERE `type` = 'Ngoài Nước'";
 $result = mysqli_query($conn, $query);
 if (!$result) {
     die("Query failed");
