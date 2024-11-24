@@ -65,21 +65,21 @@ document.getElementById('verify-token').addEventListener('click', function(e) {
     forgotStep3.style.display = 'flex';
 });
 
-// closeStep1.addEventListener('click', () => {
-//     forgotStep1.style.display = 'none';
-// });
-// sendToken.addEventListener('click', () => {
-//     forgotStep1.style.display = 'none';
-//     forgotStep2.style.display = 'flex';
-// });
-//
-// closeStep2.addEventListener('click', () => {
-//     forgotStep2.style.display = 'none';
-// });
-// verifyToken.addEventListener('click', () => {
-//     forgotStep2.style.display = 'none';
-//     forgotStep3.style.display = 'flex';
-// });
+closeStep1.addEventListener('click', () => {
+    forgotStep1.style.display = 'none';
+});
+sendToken.addEventListener('click', () => {
+    forgotStep1.style.display = 'none';
+    forgotStep2.style.display = 'flex';
+});
+
+closeStep2.addEventListener('click', () => {
+    forgotStep2.style.display = 'none';
+});
+verifyToken.addEventListener('click', () => {
+    forgotStep2.style.display = 'none';
+    forgotStep3.style.display = 'flex';
+});
 
 closeStep3.addEventListener('click', () => {
     forgotStep3.style.display = 'none';
