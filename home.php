@@ -115,6 +115,8 @@ require "connect.php";
                             <li><a class="dropdown-item" href="admin/quanly_thuexe.php">Quản lý thuê xe</a></li>
                             <li><a class="dropdown-item" href="admin/quanly_tour.php">Quản lý tour</a></li>
                             <li><a class="dropdown-item" href="admin/manager_flights.php">Quản lý chuyến bay</a></li>
+                            <li><a class="dropdown-item" href="admin/manage_hotel.php">Quản lý Khách sạn</a></li>
+                            <li><a class="dropdown-item" href="admin/manage_room.php.php">Quản lý Phòng</a></li>
                         </ul>
                     </li>
                     ';

@@ -92,6 +92,8 @@
                           <li><a class="dropdown-item" href="quanly_thuexe.php">Quản lý thuê xe</a></li>
                           <li><a class="dropdown-item" href="quanly_tour.php">Quản lý tour</a></li>
                           <li><a class="dropdown-item" href="manager_flights.php">Quản lý chuyến bay</a></li>
+                          <li><a class="dropdown-item" href="manage_hotel.php">Quản lý Khách sạn</a></li>
+                          <li><a class="dropdown-item" href="manage_room.php.php">Quản lý Phòng</a></li>
                       </ul>
                   </li>
 
