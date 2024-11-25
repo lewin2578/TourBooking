@@ -1,0 +1,138 @@
+.maybay-container body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+/*header {*/
+/*    background-color: #4CAF50;*/
+/*    color: white;*/
+/*    padding: 15px 20px;*/
+/*    text-align: center;*/
+/*}*/
+
+/*nav {*/
+/*    margin: 20px 0;*/
+/*}*/
+
+/*nav a {*/
+/*    margin: 0 15px;*/
+/*    color: white;*/
+/*    text-decoration: none;*/
+/*}*/
+
+/*footer {*/
+/*    background-color: #333;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    padding: 10px 0;*/
+/*}*/
+
+.booking-form {
+    background-color: rgba(246, 246, 246, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    position: absolute;
+    top: 30%; /* Di chuyển form xuống thêm 50px */
+    left: 25%;
+}
+
+.booking-form h2 {
+    margin-bottom: 30px;
+}
+
+.input-group-text {
+    background-color: #007bff;
+    color: white;
+}
+
+.form-control {
+    border-radius: 50px;
+}
+
+.background-img {
+    background-image: url('https://static.vinwonders.com/2022/11/pexels-apasaric-1285625.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+}
+
+.form-check-label {
+    color: #007bff;
+}
+
+.image-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.image-container img {
+    width: 100%; /* Chiều ngang full màn hình */
+    height: auto;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.maybay-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.flight-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+    width: calc(33.333% - 40px);
+    margin-right: 20px;
+    box-sizing: border-box;
+}
+
+.flight-card:last-child {
+    margin-right: 0;
+}
+
+.flight-card h3 {
+    font-size: 18px;
+    margin: 0 0 10px;
+}
+
+.flight-card .date {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.flight-card .price {
+    font-size: 24px;
+    color: #e91e63;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.flight-card .view-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+}
