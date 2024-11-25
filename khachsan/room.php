@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="vi">
 <?php
-require "../nav.php";
-$conn = mysqli_connect("localhost", "root", "", "tour_booking");
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+$conn = mysqli_connect("localhost", "root", "", "tourbooking");
 if (!$conn) {
     die("Kết nối thất bại : " . mysqli_connect_error());
 }
@@ -22,12 +24,20 @@ if (!$conn) {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+
         }
         header {
             background-color: #4CAF50;
             color: white;
             padding: 15px 20px;
             text-align: center;
+
+        }
+        .navbar-nav {
+            margin: auto;
+        }
+        .nav-link {
+            color: #ffffff !important;
         }
         nav a {
             margin: 0 15px;
@@ -43,6 +53,39 @@ if (!$conn) {
     </style>
 </head>
 <body>
+<header>
+    <div class="container">
+        <h1><a class="nav-link" href="../home.php">Chào Mừng Đến Với Tour Du Lịch</a></h1>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <p class="nav-link dropdown-toggle" id="tourDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tour</p>
+                        <ul class="dropdown-menu" aria-labelledby="tourDropdown">
+                            <li><a class="dropdown-item" href="../tour/tour_trongnuoc.php">Trong nước</a></li>
+                            <li><a class="dropdown-item" href="../tour/tour_ngoainuoc.php">Ngoài nước</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="../maybay/booking.php">Vé máy bay</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hotel.php">Khách sạn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../thuexe/thuexe.php">Thuê xe</a></li>
+                    <?php if (isset($_SESSION['id_user'])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../login/profile.php">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../login/logout.php">Đăng xuất</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../login/login.php">Đăng nhập</a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
 <?php
     $id_hotel = $_GET['id_hotel'];
     $query_hotel = "SELECT * FROM `khachsan` WHERE `id_hotel` = $id_hotel";
