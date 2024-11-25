@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <?php
-require "../nav.php";
+
 $conn = mysqli_connect("localhost", "root", "", "tourbooking");
 if (!$conn) {
     die("Kết nối thất bại : " . mysqli_connect_error());
@@ -28,6 +28,13 @@ if (!$conn) {
             color: white;
             padding: 15px 20px;
             text-align: center;
+            color: white;
+        }
+        .navbar-nav {
+            margin: auto;
+        }
+        .nav-link {
+            color: #ffffff !important;
         }
         nav a {
             margin: 0 15px;
@@ -43,6 +50,31 @@ if (!$conn) {
     </style>
 </head>
 <body>
+<header>
+    <h1>Trang quản lý khách sạn</h1>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+
+                <li class="nav-item"><a class="nav-link" href="../home.php">Trang chủ</a></li>
+
+                <li class="nav-item dropdown">
+                    <p class="nav-link dropdown-toggle" id="AdminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Quản lý
+                    </p>
+                    <ul class="dropdown-menu" aria-labelledby="AdminDropdown">
+                        <li><a class="dropdown-item" href="quanly_thuexe.php">Quản lý thuê xe</a></li>
+                        <li><a class="dropdown-item" href="quanly_tour.php">Quản lý tour</a></li>
+                        <li><a class="dropdown-item" href="manager_flights.php">Quản lý chuyến bay</a></li>
+                        <li><a class="dropdown-item" href="manage_hotel.php">Quản lý Khách sạn</a></li>
+                        <li><a class="dropdown-item" href="manage_room.php.php">Quản lý Phòng</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>
 <?php
 $query_hotel = "SELECT * FROM `khachsan`";
 $result_hotel = mysqli_query($conn, $query_hotel);
