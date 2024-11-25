@@ -50,6 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
         echo "<script>alert('Cập nhật thông tin thành công!');</script>";
         // Cập nhật lại thông tin trong session
         $_SESSION['name'] = $name;
+        // Lấy lại thông tin người dùng sau khi cập nhật
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc(); // Cập nhật thông tin người dùng
     } else {
         echo "<script>alert('Cập nhật thông tin thất bại! Vui lòng thử lại.');</script>";
     }

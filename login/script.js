@@ -42,6 +42,18 @@ const closeStep3 = document.getElementById('close-forgot-step3');
 // const sendToken = document.getElementById('send-token');
 // const verifyToken = document.getElementById('verify-token');
 
+closeStep1.addEventListener('click', () => {
+    forgotStep1.style.display = 'none';
+});
+
+closeStep2.addEventListener('click', () => {
+    forgotStep2.style.display = 'none';
+});
+
+closeStep3.addEventListener('click', () => {
+    forgotStep3.style.display = 'none';
+});
+
 // Đóng popup khi click outside
 document.addEventListener('click', (e) => {
     if (e.target.classList.contains('popup')) {
@@ -165,16 +177,4 @@ document.getElementById('reset-password').addEventListener('click', function(e) 
             console.error('Error:', error);
             alert('Đã xảy ra lỗi. Vui lòng thử lại sau!');
         });
-});
-
-closeStep1.addEventListener('click', () => {
-    forgotStep1.style.display = 'none';
-});
-
-closeStep2.addEventListener('click', () => {
-    forgotStep2.style.display = 'none';
-});
-
-closeStep3.addEventListener('click', () => {
-    forgotStep3.style.display = 'none';
 });
