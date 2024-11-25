@@ -10,7 +10,6 @@ if (isset($_SESSION['id_user'])) {
     echo "<script>alert('Chào mừng, " . addslashes(htmlspecialchars($_SESSION['name'])) . "');</script>";
 }
 
-
 ?>
 
 <!DOCTYPE html>

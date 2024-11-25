@@ -77,6 +77,7 @@ if(isset($_POST["submit"])){
         }
         table{
             width: 1000px;
+
         }
         label{
             font-family: sans-serif;

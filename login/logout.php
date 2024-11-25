@@ -9,4 +9,3 @@ session_destroy();
 // Chuyển hướng về trang đăng nhập
 header("Location: ../login/login.php");
 exit();
-

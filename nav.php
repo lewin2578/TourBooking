@@ -106,6 +106,7 @@ body {
                     <li class="nav-item"><a class="nav-link" href="../thuexe/thuexe.php">Thuê xe</a></li>
 ';
 
+
 if (isset($_SESSION['id_user'])) {
     // Đã đăng nhập, hiển thị liên kết Profile
     echo '
