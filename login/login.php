@@ -1,5 +1,6 @@
 <?php
 session_start(); // Bắt đầu phiên làm việc
+
 // Kết nối cơ sở dữ liệu
 $servername = "localhost";
 $username = "root";
@@ -27,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_login'])) {
         $password = mysqli_real_escape_string($conn, $password);
 
         // Truy vấn kiểm tra tài khoản
-        $sql = "SELECT id_user, name, password, status FROM user WHERE email = '$email'";
+        $sql = "SELECT id_user, name, password, status, role FROM user WHERE email = '$email'";
         $result = mysqli_query($conn, $sql);
 
         if ($result && mysqli_num_rows($result) > 0) {
@@ -45,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_login'])) {
                     // Đăng nhập thành công
                     $_SESSION['id_user'] = $row['id_user'];
                     $_SESSION['name'] = $row['name'];
+                    $_SESSION['role'] = $row['role'];
 
                     // Điều hướng đến trang home
                     header("Location: ../home.php");
@@ -70,11 +72,14 @@ mysqli_close($conn);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Đăng Nhập</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="login_style.css">
 </head>
 <header>
     <div class="container">
-        <h1>Chào Mừng Đến Với Tour Du Lịch</h1>
+        <h1><a class="nav-link" href="../home.php">Chào Mừng Đến Với Tour Du Lịch</a></h1>
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <ul class="navbar-nav">
@@ -88,13 +93,13 @@ mysqli_close($conn);
                     <li class="nav-item"><a class="nav-link" href="../maybay/booking.php">Vé máy bay</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Khách sạn</a></li>
                     <li class="nav-item"><a class="nav-link" href="../thuexe/thuexe.php">Thuê xe</a></li>
-
                 </ul>
             </div>
         </nav>
     </div>
 </header>
 <body class="login_style">
+
 <div class="login_container">
     <div class="left-side">
         <div class="slideshow">
