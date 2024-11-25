@@ -2,7 +2,7 @@
 <html lang="vi">
 <?php
 require "../nav.php";
-$conn = mysqli_connect("localhost", "root", "", "tour_booking");
+$conn = mysqli_connect("localhost", "root", "", "tourbooking");
 if (!$conn) {
     die("Kết nối thất bại : " . mysqli_connect_error());
 }
@@ -64,7 +64,8 @@ if (!$conn) {
         <text style="color: yellow;font-size: large"><?php for ($x = 0; $x <= $row_hotel[2]; $x++) {?>&#9733 <?php } ?><br></text>
         <text style="font-size: large;font-weight: bold">Giá từ: <?php echo $row_hotel[3] ?></text> <br>
         <text style="font-size: large;font-weight: bold">Liên hệ: <?php echo $row_hotel[4] ?></text><br>
-        <text style="font-size: large;font-weight: bold"><?php echo $row_hotel[5] ?></text>
+        <text style="font-size: large;font-weight: bold"><?php echo $row_hotel[5] ?></text><br>
+        <a href="bookingrequest.php?id_hotel=<?php echo $id_hotel ?>" style='font-weight: bold;text-decoration: none;color: green'>GỬI ĐƠN LIÊN HỆ</a>
     </div>
 </div>
 <div class="container" style="width: 90%; margin-top: 3%">
