@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
         $stmt = $conn->prepare("INSERT INTO booked_flight (flight_id, name, email, phone, num_tickets) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param('isssi', $flight_id, $passenger_name, $email, $phone, $num_tickets);
         $stmt->execute();
-
+        
         // Check if the booking was successful
         if ($stmt->affected_rows > 0) {
             $booking_successful = true;
