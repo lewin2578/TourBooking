@@ -73,6 +73,5 @@ if (!$conn) {
     <p>Điện thoại: 0123 456 789</p>
     <p>Email: info@tourdulich.com</p>
 </footer>
-
 </body>
 </html>
