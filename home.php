@@ -1,8 +1,27 @@
+<?php
+session_start();
+require "nav.php";
+
+if (isset($_SESSION['id_user'])) {
+//    // Nếu người dùng chưa đăng nhập, chuyển hướng về trang đăng nhập
+//    header("Location: ../login/login.php");
+//    exit();
+    // Hiển thị thông tin người dùng
+    echo "<script>alert('Chào mừng, " . addslashes(htmlspecialchars($_SESSION['name'])) . "');</script>";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
-<?php
-require "nav.php"
-?>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trang chủ</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" ref="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+
 <h2>Trong nước</h2>
 <section class="tour-list" id="tours">
     <div class="tour-item">

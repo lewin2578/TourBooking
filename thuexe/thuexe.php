@@ -7,6 +7,8 @@ $dbname = "tourbooking";
 // Kết nối tới database
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
+require "../nav.php";
+
 if(isset($_POST["submit"])){
     $deday = $_POST["deday"];
     $reday = $_POST["reday"];
@@ -36,9 +38,10 @@ if(isset($_POST["submit"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tour Du Lịch - Thuê xe</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        body {
+        .thuexe body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -46,20 +49,20 @@ if(isset($_POST["submit"])){
             flex-direction: column;
             min-height: 100vh;
         }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
-        }
-        nav {
-            margin: 20px 0;
-        }
-        nav a {
-            margin: 0 15px;
-            color: white;
-            text-decoration: none;
-        }
+        /*header {*/
+        /*    background-color: #4CAF50;*/
+        /*    color: white;*/
+        /*    padding: 15px 20px;*/
+        /*    text-align: center;*/
+        /*}*/
+        /*nav {*/
+        /*    margin: 20px 0;*/
+        /*}*/
+        /*nav a {*/
+        /*    margin: 0 15px;*/
+        /*    color: white;*/
+        /*    text-decoration: none;*/
+        /*}*/
         
         footer {
             background-color: #333;
@@ -74,6 +77,7 @@ if(isset($_POST["submit"])){
         }
         table{
             width: 1000px;
+
         }
         label{
             font-family: sans-serif;
@@ -97,17 +101,17 @@ if(isset($_POST["submit"])){
         }
     </style>
 </head>
-<body>
+<body class="thuexe">
 
-<header>
-    <h1>Chào Mừng Đến Với Tour Du Lịch</h1>
-    <nav>
-        <a href="">Tour</a>
-        <a href="">Vé máy bay</a>
-        <a href="">Khách sạn</a>
-        <a href="">Thuê xe</a>
-    </nav>
-</header>
+<!--<header>-->
+<!--    <h1>Chào Mừng Đến Với Tour Du Lịch</h1>-->
+<!--    <nav>-->
+<!--        <a href="">Tour</a>-->
+<!--        <a href="">Vé máy bay</a>-->
+<!--        <a href="">Khách sạn</a>-->
+<!--        <a href="">Thuê xe</a>-->
+<!--    </nav>-->
+<!--</header>-->
 <div style="background-image: url('rentalcar.webp');">
 <form method="post" action="" >
             <table border="0" style="margin-left: 16%;">
