@@ -25,6 +25,32 @@
 
 }
 
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.navbar-nav {
+    margin: auto;
+}
+.nav-link {
+    color: #ffffff !important;
+}
+nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
 .left-side {
     width: 60%;
     position: relative;
