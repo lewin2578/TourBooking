@@ -100,7 +100,9 @@ $flights = $conn->query("
                     <th>Ngày giờ đi</th>
                     <th>Ngày giờ về</th>
                     <th>Giá</th>
-                    <th>Hành động</th>
+                    <th colspan="2">Hành động
+
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -115,6 +117,12 @@ $flights = $conn->query("
                             <form method="post" action="">
                                 <input type="hidden" name="flight_id" value="<?php echo $row['id']; ?>">
                                 <button type="submit" name="delete_flight" class="btn btn-danger btn-sm">Xóa</button>
+                            </form>
+                        </td>
+                        <td>
+                        <form method="post" action="edit_flight.php">
+                                <input type="hidden" name="flight_id" value="<?php echo $row['id']; ?>">
+                                <button type="submit" class="btn btn-warning btn-sm">Sửa</button>
                             </form>
                         </td>
                     </tr>
