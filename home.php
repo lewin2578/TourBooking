@@ -203,13 +203,88 @@ require "connect.php";
     </section>
 
     <h2>Chuyến bay</h2>
-<!--    code o day-->
+    <section class="flight-list">
+    <div class="row">
+        <?php
+        // Truy vấn lấy dữ liệu chuyến bay và thông tin sân bay
+        $query = "SELECT 
+                     fl.id AS flight_id, 
+                     dep_airport.airport AS departure_airport, 
+                     arr_airport.airport AS arrival_airport, 
+                     fl.departure_datetime, 
+                     fl.price 
+                  FROM flight_list fl
+                  JOIN airport_list dep_airport ON fl.departure_airport_id = dep_airport.id
+                  JOIN airport_list arr_airport ON fl.arrival_airport_id = arr_airport.id
+                  ORDER BY fl.departure_datetime ASC";
+
+        $result = mysqli_query($conn, $query);
+
+        if (!$result) {
+            die("Lỗi truy vấn: " . mysqli_error($conn));
+        }
+
+        // Kiểm tra và hiển thị dữ liệu
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<div class='col-md-4 col-sm-6 mb-4'>
+                        <div class='card'>
+                            <div class='card-header bg-primary text-white'>
+                                <h5 class='card-title'>Mã chuyến bay: {$row['flight_id']}</h5>
+                            </div>
+                            <div class='card-body'>
+                                <p class='card-text'>Điểm đi: {$row['departure_airport']}</p>
+                                <p class='card-text'>Điểm đến: {$row['arrival_airport']}</p>
+                                <p class='card-text'>Khởi hành:" . date("d-m-Y H:i", strtotime($row['departure_datetime'])) . "</p>
+                                <p class='card-text'>Giá vé: " . number_format($row['price'], 0, ',', '.') . " VND</p>
+                                <form method='get' action='/TourBooking/maybay/datvemaybay.php'>
+                                    <input type='hidden'name='action' value='view'>
+                                    <input type='submit' name='submit' class='btn btn-primary' value='Xem chi tiết'>
+                                </form>
+                            </div>
+                        </div>
+                    </div>";
+            }
+        } else {
+            echo "<p>Không có chuyến bay nào được tìm thấy.</p>";
+        }
+        ?>
+    </div>
+</section>
+
 
     <h2>Khách sạn</h2>
     <!--    code o day-->
 
     <h2>Cho thuê xe</h2>
-    <!--    code o day-->
+    <section class="tour-list">
+    <div class="row">
+        <?php
+        $query = "SELECT * FROM tourcar";
+        $result = mysqli_query($conn, $query);
+
+        if (!$result) {
+            die("Query failed");
+        }
+        if (mysqli_num_rows($result) != 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<div class='col-md-4 col-sm-6 mb-4'>
+                        <div class='card'>
+                            <div class='card-body'>
+                                <h5 class='card-title'>Loại xe: {$row['cartype']}</h5>
+                                <p class='card-text'>Giá thuê/ngày: {$row['priceperday']} VND</p>
+                                <form method='get' action='/TourBooking/thuexe/thuexe.php'>
+                                    <input type='hidden'name='action' value='view'>
+                                    <input type='submit' name='submit' class='btn btn-primary' value='Xem chi tiết'>
+                                </form>
+                            </div>
+                        </div>
+                    </div>";
+            }
+        }
+        ?>
+    </div>
+</section>
 </div>
 
 <footer>
