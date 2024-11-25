@@ -89,7 +89,7 @@ require "connect.php";
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="maybay/booking.php">Vé máy bay</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Khách sạn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="khachsan/hotel.php">Khách sạn</a></li>
                     <li class="nav-item"><a class="nav-link" href="thuexe/thuexe.php">Thuê xe</a></li>
 
                     <?php
