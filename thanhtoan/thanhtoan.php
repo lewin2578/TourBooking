@@ -125,7 +125,7 @@
     </script>
 </head>
 <body>
-    <form action="dattour.php" method="POST">
+    <form action="dattour_lxd.php" method="POST">
         <h2>Chọn phương thức thanh toán</h2>
 
         <!-- Select Payment Method -->

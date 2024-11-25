@@ -7,8 +7,8 @@ if (!$result) {
     die("Query failed");
 }
 if (isset($_POST["submit"])) {
-    $idToEdit = $_POST["idToSubmit"];
-    header("Location: chitiet_tour.php?id=$idToEdit");
+    $idToSubmit = $_POST["idToSubmit"];
+    header("Location: chitiet_tour.php?id=$idToSubmit");
     exit;
 }
 ?>

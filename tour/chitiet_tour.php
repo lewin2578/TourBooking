@@ -211,7 +211,12 @@ if (isset($_GET['id'])) {
         <h4>Mô tả tour</h4>
         <p id="description"><?php echo $desc?></p>
     </div>
-    <a href="#" class="btn">Đặt tour ngay</a>
+<?php
+if (isset($_SESSION['id_user']))
+    echo '<a href="dat_tour.php?id='.$id.'" class="btn">Đặt tour ngay</a>';
+else
+    echo "<p style='color: red'>Vui lòng đăng nhập để đặt tour</p>"
+    ?>
 </div>
 
 <footer>

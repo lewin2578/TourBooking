@@ -1,17 +1,36 @@
 <?php
 require "../connect.php";
+$id_tour = '';
+$flag = 0;
 
-$query = "SELECT * FROM `tour` WHERE `type` = 'Ngoài Nước'";
-$result = mysqli_query($conn, $query);
-if (!$result) {
-    die("Query failed");
+if (isset($_GET['id'])){
+    $id_tour = $_GET['id'];
+    $id_user = $_SESSION['id_user'];
+    $query = "SELECT * FROM `user` WHERE `id_user` = '$id_user'";
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0){
+        $row = mysqli_fetch_assoc($result);
+        $name = $row['name'];
+    }
 }
-if (isset($_POST["submit"])) {
-    $idToSubmit = $_POST["idToSubmit"];
-    header("Location: chitiet_tour.php?id=$idToSubmit");
-    exit;
+
+if(isset($_POST['submit'])){
+    $depa = $_POST['depa'];
+    $sl = $_POST['sl'];
+    $id_book = $id_user . $id_tour . $depa . $sl;
+    $query = "INSERT INTO `booking` (`id_book`, `id_user`, `id_tour`, `id_depa`, `quantity`) VALUES ('$id_book', '$id_user', '$id_tour', '$depa', '$sl')";
+    $result = mysqli_query($conn,$query);
+    if(!$result){
+        die("Query failed");
+    }
+    else{
+        $kq = "Thêm thành công";
+    }
+    $flag = 1;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -80,6 +99,49 @@ if (isset($_POST["submit"])) {
             background-color: #007bff;
             border-color: #007bff;
         }
+        .main {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .main h1, h2, h3 {
+            color: #333;
+        }
+        .tour-info {
+            margin: 20px 0;
+        }
+        .price {
+            color: red;
+            font-size: 1.5em;
+        }
+        .description {
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -103,10 +165,10 @@ if (isset($_POST["submit"])) {
                     <li class="nav-item"><a class="nav-link" href="#">Khách sạn</a></li>
                     <li class="nav-item"><a class="nav-link" href="../thuexe/thuexe.php">Thuê xe</a></li>
 
-<?php
+                    <?php
                     if (isset($_SESSION['id_user'])) {
-                    // Đã đăng nhập, hiển thị liên kết Profile
-                    echo '
+                        // Đã đăng nhập, hiển thị liên kết Profile
+                        echo '
                     <li class="nav-item">
                         <a class="nav-link" href="../login/profile.php">Profile</a>
                     </li>
@@ -115,52 +177,54 @@ if (isset($_POST["submit"])) {
                     </li>
                     ';
                     } else {
-                    // Chưa đăng nhập, hiển thị liên kết Đăng nhập
-                    echo '
+                        // Chưa đăng nhập, hiển thị liên kết Đăng nhập
+                        echo '
                     <li class="nav-item">
                         <a class="nav-link" href="../login/login.php">Đăng nhập</a>
                     </li>
                     ';
                     }
-?>
+                    ?>
                 </ul>
             </div>
         </nav>
     </div>
 </header>
-<h2 style="margin-left: 100px">Du lịch ngoài nước</h2>
-<section class="tour-list">
-    <div class="row">
+<div class="main">
+    <h1>Xác nhận đặt tour</h1>
+    <form method="post" action="">
         <?php
-        if (mysqli_num_rows($result) != 0) {
-            while ($row = mysqli_fetch_row($result)) {
-                $dem = $row[3]-1;
-                echo "<div class='col-md-4 col-sm-6 mb-4'>
-            <div class='card'>
-                <div class='card-body'>
-                    <h5 class='card-title'>$row[1]</h5>
-                    <p class='card-text'>Thời gian: $row[3] ngày $dem đêm </p>
-                    <p class='card-text'>Ngày khởi hành: $row[4] $row[5]</p>
-                    <p class='card-text'>Giá: $row[7] VND</p>
-                    <form method='post' action=''>
-                        <input type='hidden' name='idToSubmit' value='$row[0]'>
-                        <input type='submit' name='submit' class='btn btn-primary' value='Xem chi tiết'>
-                    </form>
-                </div>
-            </div>
-        </div>";
+        if($flag==0){
+            echo '<p>Họ tên: '. $name .'</p>
+        <p>So luong: <input type="number" min="1" value="1"  name="sl"></p>
+        <p>Chon dia diem xuat phat:  <select name="depa"> ';
+        ?>
+        <?php
+        $query = "SELECT * FROM `departure`";
+        $result = mysqli_query($conn,$query);
+        if(!$result){
+            die("Query failed");
+        }
+        if(mysqli_num_rows($result) != 0){
+            while ($row = mysqli_fetch_row($result)){
+                echo "<option value='".$row[0]."'>".$row[1]."</option>";
             }
         }
         ?>
-    </div>
-</section>
+        <?php echo
+        '</select></p>
+        <p><input type="submit" class="btn" name="submit" value="Xác nhận đặt tour"></p>';}
+        else
+            require "../thanhtoan/thanhtoan.php";
+        ?>
+    </form>
+</div>
 
 <footer>
     <p>Địa chỉ: 123 Đường Du Lịch, Thành Phố Hồ Chí Minh</p>
     <p>Điện thoại: 0123 456 789</p>
     <p>Email: info@tourdulich.com</p>
 </footer>
-
 
 </body>
 </html>
