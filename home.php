@@ -83,6 +83,7 @@ require "connect.php";
                         <p class="nav-link dropdown-toggle" id="tourDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Tour
                         </p>
+                        <li class="nav-item"><a class="nav-link" href="home.php">Trang chủ</a></li>
                         <ul class="dropdown-menu" aria-labelledby="tourDropdown">
                             <li><a class="dropdown-item" href="tour/tour_trongnuoc.php">Trong nước</a></li>
                             <li><a class="dropdown-item" href="tour/tour_ngoainuoc.php">Ngoài nước</a></li>
@@ -94,7 +95,7 @@ require "connect.php";
 
                     <?php
                     if (isset($_SESSION['id_user'])) {
-                        // Đã đăng nhập, hiển thị liên kết Profile và Đăng xuất
+                        // Đã đăng nhập, hiển thị liên kết Profile
                         echo '
                     <li class="nav-item">
                         <a class="nav-link" href="login/profile.php">Profile</a>
@@ -102,32 +103,14 @@ require "connect.php";
                     <li class="nav-item">
                         <a class="nav-link" href="login/logout.php">Đăng xuất</a>
                     </li>
-                ';
-
-                        // Kiểm tra vai trò Admin
-                        if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin') {
-                            echo '
-                    <li class="nav-item dropdown">
-                        <p class="nav-link dropdown-toggle" id="AdminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Quản lý
-                        </p>
-                        <ul class="dropdown-menu" aria-labelledby="AdminDropdown">
-                            <li><a class="dropdown-item" href="admin/quanly_thuexe.php">Quản lý thuê xe</a></li>
-                            <li><a class="dropdown-item" href="admin/quanly_tour.php">Quản lý tour</a></li>
-                            <li><a class="dropdown-item" href="admin/manager_flights.php">Quản lý chuyến bay</a></li>
-                            <li><a class="dropdown-item" href="admin/manage_hotel.php">Quản lý Khách sạn</a></li>
-                            <li><a class="dropdown-item" href="admin/manage_room.php.php">Quản lý Phòng</a></li>
-                        </ul>
-                    </li>
                     ';
-                        }
                     } else {
                         // Chưa đăng nhập, hiển thị liên kết Đăng nhập
                         echo '
                     <li class="nav-item">
                         <a class="nav-link" href="login/login.php">Đăng nhập</a>
                     </li>
-                ';
+                    ';
                     }
                     ?>
                 </ul>
@@ -221,88 +204,109 @@ require "connect.php";
     </section>
 
     <h2>Chuyến bay</h2>
-    <section class="flight-list">
-    <div class="row">
-        <?php
-        // Truy vấn lấy dữ liệu chuyến bay và thông tin sân bay
-        $query = "SELECT 
-                     fl.id AS flight_id, 
-                     dep_airport.airport AS departure_airport, 
-                     arr_airport.airport AS arrival_airport, 
-                     fl.departure_datetime, 
-                     fl.price 
-                  FROM flight_list fl
-                  JOIN airport_list dep_airport ON fl.departure_airport_id = dep_airport.id
-                  JOIN airport_list arr_airport ON fl.arrival_airport_id = arr_airport.id
-                  ORDER BY fl.departure_datetime ASC";
+    <section class="tour-list">
+        <div class="row">
+            <?php
+            $query = "SELECT * FROM `flight_list`";
+            $result = mysqli_query($conn, $query);
 
-        $result = mysqli_query($conn, $query);
-
-        if (!$result) {
-            die("Lỗi truy vấn: " . mysqli_error($conn));
-        }
-
-        // Kiểm tra và hiển thị dữ liệu
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<div class='col-md-4 col-sm-6 mb-4'>
-                        <div class='card'>
-                            <div class='card-header bg-primary text-white'>
-                                <h5 class='card-title'>Mã chuyến bay: {$row['flight_id']}</h5>
-                            </div>
-                            <div class='card-body'>
-                                <p class='card-text'>Điểm đi: {$row['departure_airport']}</p>
-                                <p class='card-text'>Điểm đến: {$row['arrival_airport']}</p>
-                                <p class='card-text'>Khởi hành:" . date("d-m-Y H:i", strtotime($row['departure_datetime'])) . "</p>
-                                <p class='card-text'>Giá vé: " . number_format($row['price'], 0, ',', '.') . " VND</p>
-                                <form method='get' action='/TourBooking/maybay/datvemaybay.php'>
-                                    <input type='hidden'name='action' value='view'>
-                                    <input type='submit' name='submit' class='btn btn-primary' value='Xem chi tiết'>
-                                </form>
-                            </div>
-                        </div>
-                    </div>";
+            if (!$result) {
+                die("Query failed");
             }
-        } else {
-            echo "<p>Không có chuyến bay nào được tìm thấy.</p>";
-        }
-        ?>
-    </div>
-</section>
 
+            if (mysqli_num_rows($result) != 0) {
+                $i = 0;
+
+                while ($row = mysqli_fetch_row($result)) {
+                    if($i<3){
+                        echo "<div class='col-md-4 col-sm-6 mb-4'>
+            <div class='card'>
+                <div class='card-body'>
+                    <h5 class='card-title'>Mã chuyến bay:$row[2]</h5>
+                    <p class='card-text'>Thời gian khởi hành: $row[5]</p>
+                    <p class='card-text'>Thời gian kết thúc: $row[6]</p>
+                    <p class='card-text'>Ghế ngồi: $row[7]</p>
+                    <p class='card-text'>Giá vé: $row[8]</p>
+                </div>
+            </div>
+        </div>";
+                    }
+                    $i++;
+                }
+            }
+            ?>
+            <a href="maybay/search.php" class="btn btn-success">Xem thêm</a>
+        </div>
+    </section>
 
     <h2>Khách sạn</h2>
-    <!--    code o day-->
+    <section class="tour-list">
+        <div class="row">
+            <?php
+            $query = "SELECT * FROM `khachsan`";
+            $result = mysqli_query($conn, $query);
+
+            if (!$result) {
+                die("Query failed");
+            }
+
+            if (mysqli_num_rows($result) != 0) {
+                $i = 0;
+
+                while ($row = mysqli_fetch_row($result)) {
+                    if($i<3){
+                        echo "<div class='col-md-4 col-sm-6 mb-4'>
+            <div class='card'>
+                <div class='card-body'>
+                    <h5 class='card-title'>$row[1]</h5>
+                    <p class='card-text'>Đánh giá: $row[2] sao </p>
+                    <p class='card-text'>Liên lạc: $row[4] </p>
+                    <p class='card-text'>Giá: $row[3] VND</p>
+                </div>
+            </div>
+        </div>";
+                    }
+                    $i++;
+                }
+            }
+            ?>
+            <a href="khachsan/hotel.php" class="btn btn-success">Xem thêm</a>
+        </div>
+    </section>
 
     <h2>Cho thuê xe</h2>
     <section class="tour-list">
-    <div class="row">
-        <?php
-        $query = "SELECT * FROM tourcar";
-        $result = mysqli_query($conn, $query);
+        <div class="row">
+            <?php
+            $query = "SELECT * FROM `tourcar`";
+            $result = mysqli_query($conn, $query);
 
-        if (!$result) {
-            die("Query failed");
-        }
-        if (mysqli_num_rows($result) != 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<div class='col-md-4 col-sm-6 mb-4'>
-                        <div class='card'>
-                            <div class='card-body'>
-                                <h5 class='card-title'>Loại xe: {$row['cartype']}</h5>
-                                <p class='card-text'>Giá thuê/ngày: {$row['priceperday']} VND</p>
-                                <form method='get' action='/TourBooking/thuexe/thuexe.php'>
-                                    <input type='hidden'name='action' value='view'>
-                                    <input type='submit' name='submit' class='btn btn-primary' value='Xem chi tiết'>
-                                </form>
-                            </div>
-                        </div>
-                    </div>";
+            if (!$result) {
+                die("Query failed");
             }
-        }
-        ?>
-    </div>
-</section>
+
+            if (mysqli_num_rows($result) != 0) {
+                $i = 0;
+
+                while ($row = mysqli_fetch_row($result)) {
+                    if($i<3){
+                        echo "<div class='col-md-4 col-sm-6 mb-4'>
+            <div class='card'>
+                <div class='card-body'>
+                    <h5 class='card-title'>$row[1]</h5>
+                    <p class='card-text'>Giá thuê xe theo ngày: $row[2]</p>
+                    
+                </div>
+            </div>
+        </div>";
+                    }
+                    $i++;
+                }
+            }
+            ?>
+            <a href="thuexe/thuexe.php" class="btn btn-success">Xem thêm</a>
+        </div>
+    </section>
 </div>
 
 <footer>
