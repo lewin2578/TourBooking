@@ -83,7 +83,6 @@ require "connect.php";
                         <p class="nav-link dropdown-toggle" id="tourDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Tour
                         </p>
-                        <li class="nav-item"><a class="nav-link" href="home.php">Trang chủ</a></li>
                         <ul class="dropdown-menu" aria-labelledby="tourDropdown">
                             <li><a class="dropdown-item" href="tour/tour_trongnuoc.php">Trong nước</a></li>
                             <li><a class="dropdown-item" href="tour/tour_ngoainuoc.php">Ngoài nước</a></li>
