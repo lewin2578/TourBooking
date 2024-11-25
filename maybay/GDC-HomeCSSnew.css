@@ -211,4 +211,22 @@ label, .form-check-label {
     color: #000;
 }
 
+header {
+    color: white;
+	background-color: #4CAF50;
+    padding: 15px 20px;
+    text-align: center;
+    color:white;
+}
 
+.navbar-nav {
+    margin: auto;
+}
+.nav-link {
+    color: #ffffff !important;
+}
+nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+}
