@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_login'])) {
                     $_SESSION['name'] = $row['name'];
 
                     // Điều hướng đến trang dashboard
-                    header("Location: /home.php");
+                    header("Location: ../home.php");
                     exit();
                 } else {
                     echo "<script>alert('Sai mật khẩu! Vui lòng thử lại.');</script>";
@@ -131,7 +131,7 @@ mysqli_close($conn);
             <h2>Xác Nhận Code</h2>
             <form action="forgot_password.php" id="forgot-step2-form">
                 <input style="width: 80%" type="text" name="token" placeholder="Nhập mã code" required>
-                <input style="width: 40%" type="submit" id="verify-token" Xác nhận>
+                <input style="width: 100%" type="submit" id="verify-token" Xác nhận>
             </form>
             <button style="width: 100%" class="close-btn" id="close-forgot-step2">Đóng</button>
         </div>
@@ -144,7 +144,7 @@ mysqli_close($conn);
             <form action="forgot_password.php" id="forgot-step3-form">
                 <input style="width: 80%" type="password" name="new_password" placeholder="Mật khẩu mới" required>
                 <input style="width: 80%" type="password" name="confirm_password" placeholder="Xác nhận mật khẩu mới" required>
-                <input style="width: 40%" type="submit" Đổi Mật Khẩu>
+                <input style="width: 100%" type="submit" Đổi Mật Khẩu>
             </form>
             <button style="width: 100%" class="close-btn" id="close-forgot-step3">Đóng</button>
         </div>
