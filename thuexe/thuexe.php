@@ -2,7 +2,6 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -58,7 +57,6 @@ if(isset($_POST["submit"])){
             text-align: center;
             color:white;
         }
-
         .navbar-nav {
             margin: auto;
         }
@@ -71,7 +69,7 @@ if(isset($_POST["submit"])){
             color: white;
             text-decoration: none;
         }
-
+        
         footer {
             background-color: #333;
             color: white;
@@ -109,44 +107,11 @@ if(isset($_POST["submit"])){
         }
     </style>
 </head>
-<header>
-    <div class="container">
-        <h1>Chào Mừng Đến Với Tour Du Lịch</h1>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <p class="nav-link dropdown-toggle" id="tourDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tour</p>
-                        <ul class="dropdown-menu" aria-labelledby="tourDropdown">
-                            <li><a class="dropdown-item" href="../tour/tour_trongnuoc.php">Trong nước</a></li>
-                            <li><a class="dropdown-item" href="../tour/tour_ngoainuoc.php">Ngoài nước</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="../maybay/booking.php">Vé máy bay</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Khách sạn</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Thuê xe</a></li>
-                    <?php if (isset($_SESSION['id_user'])): ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../login/profile.php">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../login/logout.php">Đăng xuất</a>
-                        </li>
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../login/login.php">Đăng nhập</a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
-            </div>
-        </nav>
-    </div>
-</header>
 <body class="thuexe">
 
 <header>
     <div class="container">
-        <h1>Chào Mừng Đến Với Tour Du Lịch</h1>
+        <h1><a class="nav-link" href="../home.php">Chào Mừng Đến Với Tour Du Lịch</a></h1>
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <ul class="navbar-nav">
@@ -177,7 +142,6 @@ if(isset($_POST["submit"])){
         </nav>
     </div>
 </header>
-
 <div style="background-image: url('rentalcar.webp');">
 <form method="post" action="" >
             <table border="0" style="margin-left: 16%;">

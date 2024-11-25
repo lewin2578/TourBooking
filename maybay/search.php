@@ -12,13 +12,16 @@
 	<link rel="stylesheet" type="text/css" href="GDC-HomeCSSnew.css">
 </head>
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 // Kết nối cơ sở dữ liệu
 require_once 'database_connect.php'; // Kết nối đến database
 
 ?>
 <header>
     <div class="container">
-        <h1>Chào Mừng Đến Với Tour Du Lịch</h1>
+        <h1><a class="nav-link" href="../home.php">Chào Mừng Đến Với Tour Du Lịch</a></h1>
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <ul class="navbar-nav">
