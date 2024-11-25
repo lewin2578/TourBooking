@@ -1,26 +1,104 @@
 <?php
-session_start();
-require "nav.php";
-
-if (isset($_SESSION['id_user'])) {
-//    // Nếu người dùng chưa đăng nhập, chuyển hướng về trang đăng nhập
-//    header("Location: ../login/login.php");
-//    exit();
-    // Hiển thị thông tin người dùng
-    echo "<script>alert('Chào mừng, " . addslashes(htmlspecialchars($_SESSION['name'])) . "');</script>";
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
 }
 
 ?>
 
 <!DOCTYPE html>
 <html lang="vi">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trang chủ</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<link rel="stylesheet" ref="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        .navbar-nav {
+            margin: auto;
+        }
+        .nav-link {
+            color: #ffffff !important;
+        }
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+        }
+        .tour-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .tour-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 15px;
+            width: 80%;
+            text-align: center;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="container">
+        <h1>Chào Mừng Đến Với Tour Du Lịch</h1>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <p class="nav-link dropdown-toggle" id="tourDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tour</p>
+                        <ul class="dropdown-menu" aria-labelledby="tourDropdown">
+                            <li><a class="dropdown-item" href="tour/tour_trongnuoc.php">Trong nước</a></li>
+                            <li><a class="dropdown-item" href="tour/tour_ngoainuoc.php">Ngoài nước</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="maybay/booking.php">Vé máy bay</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Khách sạn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="thuexe/thuexe.php">Thuê xe</a></li>
+
+                    <?php if (isset($_SESSION['id_user'])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login/profile.php">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login/logout.php">Đăng xuất</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login/login.php">Đăng nhập</a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
 
 <h2>Trong nước</h2>
 <section class="tour-list" id="tours">
