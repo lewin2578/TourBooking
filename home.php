@@ -94,7 +94,7 @@ require "connect.php";
 
                     <?php
                     if (isset($_SESSION['id_user'])) {
-                        // Đã đăng nhập, hiển thị liên kết Profile
+                        // Đã đăng nhập, hiển thị liên kết Profile và Đăng xuất
                         echo '
                     <li class="nav-item">
                         <a class="nav-link" href="login/profile.php">Profile</a>
@@ -102,14 +102,30 @@ require "connect.php";
                     <li class="nav-item">
                         <a class="nav-link" href="login/logout.php">Đăng xuất</a>
                     </li>
+                ';
+
+                        // Kiểm tra vai trò Admin
+                        if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin') {
+                            echo '
+                    <li class="nav-item dropdown">
+                        <p class="nav-link dropdown-toggle" id="AdminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Quản lý
+                        </p>
+                        <ul class="dropdown-menu" aria-labelledby="AdminDropdown">
+                            <li><a class="dropdown-item" href="admin/quanly_thuexe.php">Quản lý thuê xe</a></li>
+                            <li><a class="dropdown-item" href="admin/quanly_tour.php">Quản lý tour</a></li>
+                            <li><a class="dropdown-item" href="admin/manager_flights.php">Quản lý chuyến bay</a></li>
+                        </ul>
+                    </li>
                     ';
+                        }
                     } else {
                         // Chưa đăng nhập, hiển thị liên kết Đăng nhập
                         echo '
                     <li class="nav-item">
                         <a class="nav-link" href="login/login.php">Đăng nhập</a>
                     </li>
-                    ';
+                ';
                     }
                     ?>
                 </ul>

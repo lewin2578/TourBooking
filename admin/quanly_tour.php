@@ -95,6 +95,9 @@ if (isset($_POST["delete"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quản lý Tour</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -109,9 +112,13 @@ if (isset($_POST["delete"])) {
             color: white;
             padding: 15px 20px;
             text-align: center;
+            color: white;
         }
-        nav {
-            margin: 20px 0;
+        .navbar-nav {
+            margin: auto;
+        }
+        .nav-link {
+            color: #ffffff !important;
         }
         nav a {
             margin: 0 15px;
@@ -129,8 +136,25 @@ if (isset($_POST["delete"])) {
 <body>
 <header>
     <h1>Trang quản lý Tour Du Lịch</h1>
-    <nav>
-        <a href="../home.php">Quay lại trang chủ</a>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+
+                <li class="nav-item"><a class="nav-link" href="../home.php">Trang chủ</a></li>
+
+                <li class="nav-item dropdown">
+                    <p class="nav-link dropdown-toggle" id="AdminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Quản lý
+                    </p>
+                    <ul class="dropdown-menu" aria-labelledby="AdminDropdown">
+                        <li><a class="dropdown-item" href="quanly_thuexe.php">Quản lý thuê xe</a></li>
+                        <li><a class="dropdown-item" href="quanly_tour.php">Quản lý tour</a></li>
+                        <li><a class="dropdown-item" href="manager_flights.php">Quản lý chuyến bay</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
     </nav>
 </header>
 <hr style="display: block;border-top: 3px solid #4CAF50;  margin: 8px 0;" />

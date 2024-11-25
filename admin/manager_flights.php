@@ -42,9 +42,68 @@ $flights = $conn->query("
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý các chuyến bay</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            color: white;
+        }
+        .navbar-nav {
+            margin: auto;
+        }
+        .nav-link {
+            color: #ffffff !important;
+        }
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
 </head>
 <body>
+<header>
+    <h1>Trang quản lý Chuyến bay</h1>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+
+                <li class="nav-item"><a class="nav-link" href="../home.php">Trang chủ</a></li>
+
+                    <li class="nav-item dropdown">
+                        <p class="nav-link dropdown-toggle" id="AdminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Quản lý
+                        </p>
+                        <ul class="dropdown-menu" aria-labelledby="AdminDropdown">
+                            <li><a class="dropdown-item" href="quanly_thuexe.php">Quản lý thuê xe</a></li>
+                            <li><a class="dropdown-item" href="quanly_tour.php">Quản lý tour</a></li>
+                            <li><a class="dropdown-item" href="manager_flights.php">Quản lý chuyến bay</a></li>
+                        </ul>
+                    </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>
     <div class="container mt-5">
         <h2>Thêm chuyến bay</h2>
         <form method="post" action="">
@@ -128,9 +187,11 @@ $flights = $conn->query("
             </tbody>
         </table>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+<footer>
+    <p>Địa chỉ: 123 Đường Du Lịch, Thành Phố Hồ Chí Minh</p>
+    <p>Điện thoại: 0123 456 789</p>
+    <p>Email: info@tourdulich.com</p>
+</footer>
 </body>
 </html>
 <?php $conn->close(); ?>
