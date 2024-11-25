@@ -1,4 +1,8 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -6,6 +10,8 @@ $dbname = "tourbooking";
 
 // Kết nối tới database
 $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+//require "../nav.php";
 
 if(isset($_POST["submit"])){
     $deday = $_POST["deday"];
@@ -36,9 +42,10 @@ if(isset($_POST["submit"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tour Du Lịch - Thuê xe</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        body {
+        .thuexe body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -52,15 +59,19 @@ if(isset($_POST["submit"])){
             padding: 15px 20px;
             text-align: center;
         }
-        nav {
-            margin: 20px 0;
+
+        .navbar-nav {
+            margin: auto;
+        }
+        .nav-link {
+            color: #ffffff !important;
         }
         nav a {
             margin: 0 15px;
             color: white;
             text-decoration: none;
         }
-        
+
         footer {
             background-color: #333;
             color: white;
@@ -74,6 +85,7 @@ if(isset($_POST["submit"])){
         }
         table{
             width: 1000px;
+
         }
         label{
             font-family: sans-serif;
@@ -97,17 +109,41 @@ if(isset($_POST["submit"])){
         }
     </style>
 </head>
-<body>
-
 <header>
-    <h1>Chào Mừng Đến Với Tour Du Lịch</h1>
-    <nav>
-        <a href="">Tour</a>
-        <a href="">Vé máy bay</a>
-        <a href="">Khách sạn</a>
-        <a href="">Thuê xe</a>
-    </nav>
+    <div class="container">
+        <h1>Chào Mừng Đến Với Tour Du Lịch</h1>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <p class="nav-link dropdown-toggle" id="tourDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tour</p>
+                        <ul class="dropdown-menu" aria-labelledby="tourDropdown">
+                            <li><a class="dropdown-item" href="../tour/tour_trongnuoc.php">Trong nước</a></li>
+                            <li><a class="dropdown-item" href="../tour/tour_ngoainuoc.php">Ngoài nước</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="../maybay/booking.php">Vé máy bay</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Khách sạn</a></li>
+<!--                    <li class="nav-item"><a class="nav-link" href="../thuexe/thuexe.php">Thuê xe</a></li>-->
+                    <?php if (isset($_SESSION['id_user'])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../login/profile.php">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../login/logout.php">Đăng xuất</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../login/login.php">Đăng nhập</a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </nav>
+    </div>
 </header>
+<body class="thuexe">
+
 <div style="background-image: url('rentalcar.webp');">
 <form method="post" action="" >
             <table border="0" style="margin-left: 16%;">

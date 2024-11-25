@@ -12,6 +12,7 @@
 </head>
 
 <?php
+require "../nav.php";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $departure = $_POST['departure'];
                 $destination = $_POST['destination'];
@@ -26,22 +27,22 @@
                 echo "<div class='alert alert-success mt-3'>Form đã được gửi thành công!</div>";
             }
             ?>
-<header>
-    <h1>Chào Mừng Đến Với Tour Du Lịch</h1>
-    <nav>
-        <a href="">Tour</a>
-        <a href="">Vé máy bay</a>
-        <a href="">Khách sạn</a>
-        <a href="">Thuê xe</a>
-    </nav>
-</header>
-<body>
-   <div class="container">
+<!--<header>-->
+<!--    <h1>Chào Mừng Đến Với Tour Du Lịch</h1>-->
+<!--    <nav>-->
+<!--        <a href="">Tour</a>-->
+<!--        <a href="">Vé máy bay</a>-->
+<!--        <a href="">Khách sạn</a>-->
+<!--        <a href="">Thuê xe</a>-->
+<!--    </nav>-->
+<!--</header>-->
+<body class="maybay-container">
+   <div class="maybay-container">
    <div class="image-container">
             <img src="pexels-apasaric-1285625.jpg" alt="Mô tả hình ảnh">
         </div>
    </div>
-    <div class="container">
+    <div class="maybay-container">
         <div class="booking-form mx-auto">
             <h2>Đặt Chuyến Bay</h2>
             <form method="post" action="">
@@ -119,7 +120,7 @@
                         <label class="form-check-label" for="roundTrip">Khứ hồi</label>
                     </div>
                 </div>
-                
+
                 <div class="form-row">
     <div class="form-group col-md-4">
         <label for="adults">Người lớn</label>
@@ -151,14 +152,14 @@
 </div>
 
                 <button type="submit" class="btn btn-primary btn-block">Tìm chuyến bay</button>
-            </form>           
+            </form>
 
 
 
         </div>
-    </div>  
+    </div>
 
-    <div class="container">
+    <div class="maybay-container">
         <div class="title">Giá vé nội địa tốt nhất</div>
         <div class="subtitle">Giá tốt nhất từ Vietnam Airlines, Bamboo, Vietjet...</div>
         <div class="flight-card">
@@ -193,7 +194,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="maybay-container">
         <div class="title">Giá vé nội địa tốt nhất</div>
         <div class="subtitle">Giá tốt nhất từ Vietnam Airlines, Bamboo, Vietjet...</div>
         <div class="flight-card">

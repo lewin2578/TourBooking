@@ -1,13 +1,15 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 echo '
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour Du Lịch</title>
     <link rel="stylesheet" ref="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
-    <style>
+     <style>
 body {
     font-family: Arial, sans-serif;
             margin: 0;
@@ -90,27 +92,42 @@ body {
 <header>
     <div class="container">
         <h1>Chào Mừng Đến Với Tour Du Lịch</h1>
-        <nav class="navbar navbar-expand-lg ">
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <p class="nav-link dropdown-toggle" id="tourDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Tour
-                        </p>
+                        <p class="nav-link dropdown-toggle" id="tourDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tour</p>
                         <ul class="dropdown-menu" aria-labelledby="tourDropdown">
                             <li><a class="dropdown-item" href="tour/tour_trongnuoc.php">Trong nước</a></li>
                             <li><a class="dropdown-item" href="tour/tour_ngoainuoc.php">Ngoài nước</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item"><a class="nav-link" href="maybay/booking.php">Vé máy bay</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Khách sạn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="thuexe/thuexe.php">Thuê xe</a></li>
+';
+
+
+if (isset($_SESSION['id_user'])) {
+    // Đã đăng nhập, hiển thị liên kết Profile
+    echo '
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Vé máy bay</a>
+                        <a class="nav-link" href="login/profile.php">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Khách sạn</a>
+                        <a class="nav-link" href="login/logout.php">Đăng xuất</a>
                     </li>
+    ';
+} else {
+    // Chưa đăng nhập, hiển thị liên kết Đăng nhập
+    echo '
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Thuê xe</a>
+                        <a class="nav-link" href="login/login.php">Đăng nhập</a>
                     </li>
+    ';
+}
+
+echo '
                 </ul>
             </div>
         </nav>
