@@ -1,6 +1,5 @@
 <?php
 session_start(); // Bắt đầu phiên làm việc
-require "../nav.php";
 // Kết nối cơ sở dữ liệu
 $servername = "localhost";
 $username = "root";
@@ -47,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_login'])) {
                     $_SESSION['id_user'] = $row['id_user'];
                     $_SESSION['name'] = $row['name'];
 
-                    // Điều hướng đến trang dashboard
+                    // Điều hướng đến trang home
                     header("Location: ../home.php");
                     exit();
                 } else {
@@ -73,6 +72,28 @@ mysqli_close($conn);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="login_style.css">
 </head>
+<header>
+    <div class="container">
+        <h1>Chào Mừng Đến Với Tour Du Lịch</h1>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <p class="nav-link dropdown-toggle" id="tourDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tour</p>
+                        <ul class="dropdown-menu" aria-labelledby="tourDropdown">
+                            <li><a class="dropdown-item" href="../tour/tour_trongnuoc.php">Trong nước</a></li>
+                            <li><a class="dropdown-item" href="../tour/tour_ngoainuoc.php">Ngoài nước</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="../maybay/booking.php">Vé máy bay</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Khách sạn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../thuexe/thuexe.php">Thuê xe</a></li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
 <body class="login_style">
 <div class="login_container">
     <div class="left-side">
