@@ -248,10 +248,16 @@ if (isset($_POST["delete"])) {
         if (mysqli_num_rows($result) != 0) {
             $i = 1;
             while ($row = mysqli_fetch_row($result)) {
+                $q_dest = "SELECT * FROM `destination` WHERE `id_dest` = '$row[2]'";
+                $r_dest = mysqli_query($conn, $q_dest);
+                if ($r_dest && mysqli_num_rows($r_dest) > 0) {
+                    $row_d = mysqli_fetch_assoc($r_dest);
+                    $dia = $row_d['name'];
+                }
                 echo "<tr style='" . ($i % 2 == 0 ? "background-color: lightblue" : "") . "'>";
                 echo "<td>$row[0]</td>
                   <td>$row[1]</td>
-                  <td>$row[2]</td>
+                  <td>$dia</td>
                   <td>$row[3]</td>
                   <td>$row[4]</td>
                   <td>$row[5]</td>
