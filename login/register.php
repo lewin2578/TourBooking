@@ -22,27 +22,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_register'])) {
 
     // Kiểm tra nếu các trường bị bỏ trống
     if (empty($email) || empty($phone) || empty($password) || empty($confirm_password)) {
-        echo "<script>alert('Vui lòng điền đầy đủ thông tin!');</script>";
+        echo "<script>alert('Vui lòng điền đầy đủ thông tin!');
+        window.location.href = 'login.php';
+        </script>";
         $error = true;
     }
     // Kiểm tra định dạng email
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "<script>alert('Email không đúng định dạng!');</script>";
+        echo "<script>alert('Email không đúng định dạng!');
+        window.location.href = 'login.php';
+        </script>";
         $error = true;
     }
     // Kiểm tra định dạng số điện thoại
     elseif (!preg_match('/^[0-9]{10}$/', $phone)) {
-        echo "<script>alert('Số điện thoại không hợp lệ! Vui lòng nhập 10 chữ số.');</script>";
+        echo "<script>alert('Số điện thoại không hợp lệ! Vui lòng nhập 10 chữ số.');
+        window.location.href = 'login.php';
+        </script>";
         $error = true;
     }
     // Kiểm tra độ mạnh của mật khẩu
     elseif (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/', $password)) {
-        echo "<script>alert('Mật khẩu không đủ độ bảo mật. Vui lòng nhập mật khẩu có ít nhất 6 ký tự, bao gồm cả chữ cái và số!');</script>";
+        echo "<script>alert('Mật khẩu không đủ độ bảo mật. Vui lòng nhập mật khẩu có ít nhất 6 ký tự, bao gồm cả chữ cái và số!');
+        window.location.href = 'login.php';
+        </script>";
         $error = true;
     }
     // Kiểm tra mật khẩu xác nhận
     elseif ($password !== $confirm_password) {
-        echo "<script>alert('Mật khẩu và xác nhận mật khẩu không khớp!');</script>";
+        echo "<script>alert('Mật khẩu và xác nhận mật khẩu không khớp!');
+        window.location.href = 'login.php';
+        </script>";
         $error = true;
     }
 
@@ -53,7 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_register'])) {
         $result = mysqli_query($conn, $check_email);
 
         if (mysqli_num_rows($result) > 0) {
-            echo "<script>alert('Email đã được sử dụng. Vui lòng sử dụng email khác!');</script>";
+            echo "<script>alert('Email đã được sử dụng. Vui lòng sử dụng email khác!');
+            window.location.href = 'login.php';
+            </script>";
         } else {
             // Mã hóa mật khẩu trước khi lưu vào database
 //            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
@@ -68,7 +80,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_register'])) {
                 </script>";
                 exit();
             } else {
-                echo "<script>alert('Đã xảy ra lỗi. Vui lòng thử lại sau.');</script>";
+                echo "<script>alert('Đã xảy ra lỗi. Vui lòng thử lại sau.');
+                window.location.href = 'login.php';
+                </script>";
             }
         }
     }

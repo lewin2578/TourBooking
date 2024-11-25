@@ -111,7 +111,7 @@ if(isset($_POST["submit"])){
 
 <header>
     <div class="container">
-        <h1>Chào Mừng Đến Với Tour Du Lịch</h1>
+        <h1><a class="nav-link" href="../home.php">Chào Mừng Đến Với Tour Du Lịch</a></h1>
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <ul class="navbar-nav">

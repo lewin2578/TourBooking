@@ -22,7 +22,7 @@ if (!$conn) {
 
 // Lấy thông tin người dùng
 $id_user = $_SESSION['id_user'];
-$sql = "SELECT name, email, phone, address FROM user WHERE id_user = ?";
+$sql = "SELECT name, email, phone, address, password  FROM user WHERE id_user = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('i', $id_user);
 $stmt->execute();
@@ -59,6 +59,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     }
 }
 
+// Xử lý thay đổi mật khẩu
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change_password'])) {
+    $current_password = trim($_POST['current_password']);
+    $new_password = $_POST['new_password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    // Kiểm tra mật khẩu cũ
+    if ($current_password !== $user['password']) { // So sánh mật khẩu cũ
+        echo json_encode(['success' => false, 'message' => 'Mật khẩu cũ không đúng!']);
+        exit;
+    } elseif ($new_password !== $confirm_password) { // Kiểm tra mật khẩu mới
+        echo json_encode(['success' => false, 'message' => 'Mật khẩu mới và xác nhận không khớp!']);
+        exit;
+    } else {
+        // Cập nhật mật khẩu
+        $sql_password_update = "UPDATE user SET password = ? WHERE id_user = ?";
+        $stmt_password_update = $conn->prepare($sql_password_update);
+        $stmt_password_update->bind_param('si', $new_password, $id_user); // Không mã hóa
+
+        if ($stmt_password_update->execute()) {
+            echo json_encode(['success' => true, 'message' => 'Thay đổi mật khẩu thành công!']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Thay đổi mật khẩu thất bại!']);
+        }
+        exit;
+    }
+}
+
 $stmt->close();
 $conn->close();
 
@@ -70,7 +98,10 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -142,7 +173,7 @@ $conn->close();
 </head>
 <header>
     <div class="container-fluid"> <!-- Đổi thành container-fluid -->
-        <h1>Chào Mừng Đến Với Tour Du Lịch</h1>
+        <h1><a class="nav-link" href="../home.php">Chào Mừng Đến Với Tour Du Lịch</a></h1>
         <nav class="navbar navbar-expand-lg w-100"> <!-- Thêm w-100 -->
             <div class="container-fluid">
                 <ul class="navbar-nav">
@@ -189,5 +220,47 @@ $conn->close();
         <button type="submit" class="btn btn-primary w-100" name="update_profile">Cập Nhật Thông Tin</button>
     </form>
 </div>
+<div class="profile-container">
+    <h2>Thay Đổi Mật Khẩu</h2>
+    <form id="change-password-form">
+        <div class="form-group">
+            <label for="current_password">Mật khẩu cũ:</label>
+            <input type="password" class="form-control" id="current_password" name="current_password" required>
+        </div>
+        <div class="form-group">
+            <label for="new_password">Mật khẩu mới:</label>
+            <input type="password" class="form-control" id="new_password" name="new_password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Xác nhận mật khẩu mới:</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100" name="change_password">Thay Đổi Mật Khẩu</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#change-password-form').on('submit', function(event) {
+            event.preventDefault(); // Ngăn chặn việc gửi form bình thường
+
+            $.ajax({
+                url: 'profile.php', // Tệp xử lý
+                type: 'POST',
+                data: $(this).serialize() + '&change_password=true', // Gửi dữ liệu
+                dataType: 'json',
+                success: function(response) {
+                    alert(response.message); // Hiển thị thông báo
+                    if (response.success) {
+                        location.reload(); // Tải lại trang nếu thành công
+                    }
+                },
+                error: function() {
+                    alert('Đã xảy ra lỗi trong quá trình thay đổi mật khẩu!');
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
