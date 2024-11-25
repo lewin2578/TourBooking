@@ -24,7 +24,7 @@ body {
             color: white;
             padding: 15px 20px;
             text-align: center;
-            color:white;
+            
         }
         .navbar-nav {
     margin: auto;
@@ -36,6 +36,12 @@ body {
     margin: 0 15px;
             color: white;
             text-decoration: none;
+        }
+        footer {
+    background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
         }
         .tour-list {
     flex: 1;
@@ -52,12 +58,7 @@ body {
             width: 80%; /* Chiếm 80% chiều rộng */
             text-align: center;
         }
-        footer {
-    background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-        }
+        
 
 
 
@@ -103,7 +104,7 @@ body {
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="maybay/booking.php">Vé máy bay</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Khách sạn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="khachsan/hotel.php">Khách sạn</a></li>
                     <li class="nav-item"><a class="nav-link" href="thuexe/thuexe.php">Thuê xe</a></li>
 ';
 
