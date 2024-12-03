@@ -1,4 +1,18 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['role'])) {
+    header("Location: login.php");
+    exit();
+} elseif ($_SESSION['role'] === 'User') {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit();
+} elseif ($_SESSION['role'] !== 'Admin') {
+    die("Bạn không có quyền truy cập vào trang này.");
+}
+
 require "../connect.php";
 $type = $kq ='';
 $query_search = "SELECT * FROM `tour`";
@@ -147,6 +161,7 @@ if (isset($_POST["delete"])) {
                         Quản lý
                     </p>
                     <ul class="dropdown-menu" aria-labelledby="AdminDropdown">
+                        <li><a class="dropdown-item" href="quanly_user.php">Quản lý User</a></li>
                         <li><a class="dropdown-item" href="quanly_thuexe.php">Quản lý thuê xe</a></li>
                         <li><a class="dropdown-item" href="quanly_tour.php">Quản lý tour</a></li>
                         <li><a class="dropdown-item" href="manager_flights.php">Quản lý chuyến bay</a></li>
